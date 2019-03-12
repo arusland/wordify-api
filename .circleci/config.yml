@@ -32,3 +32,8 @@ jobs:
             - ~/.m2
           key: wordify-api-{{ checksum "pom.xml" }}
           
+      - run: mvn package
+    
+      - store_artifacts:
+          path: target/wordify-api-1.0-SNAPSHOT.jar
+          
