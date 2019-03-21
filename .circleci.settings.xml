@@ -5,11 +5,6 @@
     <server>
       <username>ruslan</username>
       <password>${MAVEN_PASSWORD}</password>
-      <id>central</id>
-    </server>
-    <server>
-      <username>ruslan</username>
-      <password>${MAVEN_PASSWORD}</password>
       <id>snapshots</id>
     </server>
   </servers>
@@ -22,7 +17,7 @@
           </snapshots>
           <id>central</id>
           <name>libs-release</name>
-          <url>${MAVEN_BASE_URL}/libs-release</url>
+          <url>http://repo.maven.apache.org/maven2</url>
         </repository>
         <repository>
           <snapshots />
@@ -38,7 +33,7 @@
           </snapshots>
           <id>central</id>
           <name>libs-release</name>
-          <url>${MAVEN_BASE_URL}/libs-release</url>
+          <url>http://repo.maven.apache.org/maven2</url>
         </pluginRepository>
         <pluginRepository>
           <snapshots />
