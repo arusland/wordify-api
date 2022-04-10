@@ -2,42 +2,18 @@ kind: pipeline
 name: default
 
 steps:
-  - name: restore-cache-with-filesystem
-    image: meltwater/drone-cache:dev
-    pull: true
-    settings:
-      backend: "filesystem"
-      restore: true
-      cache_key: "volume"
-      #archive_format: "gzip"
-      # filesystem_cache_root: "/tmp/cache"
-      mount:
-        - 'vendor'
-    volumes:
-    - name: cache
-      path: /tmp/cache
-
   - name: test
     image: maven:3.8.3-openjdk-17
+    volumes:
+      - name: cache
+        path: /root/.m2
     commands:
+      - pwd      
       - mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
       - mvn test -B
-
-  - name: rebuild-cache-with-filesystem
-    image: meltwater/drone-cache:dev
-    pull: true
-    settings:
-      backend: "filesystem"
-      rebuild: true
-      cache_key: "volume"
-      #archive_format: "gzip"
-      # filesystem_cache_root: "/tmp/cache"
-      mount:
-        - 'vendor'
-    volumes:
-    - name: cache
-      path: /tmp/cache
+      - ls -lah /root/.m2
 
 volumes:
   - name: cache
-    temp: {}
+    host:
+      path: /temp/drone/cache
