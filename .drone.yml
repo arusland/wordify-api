@@ -8,10 +8,8 @@ steps:
       - name: cache
         path: /root/.m2
     commands:
-      - pwd      
       - mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
       - mvn test -B
-      - ls -lah /root/.m2
 
 volumes:
   - name: cache
